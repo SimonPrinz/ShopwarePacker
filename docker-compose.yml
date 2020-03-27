@@ -1,0 +1,6 @@
+version: '2'
+
+services:
+  packer:
+    container_name: ShopwarePacker
+    build: ./build/
