@@ -1,6 +1,8 @@
 FROM alpine
 
 LABEL maintainer="simon.prinz@live.de"
+LABEL org.opencontainers.image.source https://github.com/SimonPrinz/ShopwarePacker
+LABEL org.opencontainers.image.description A Docker image for being used in GitLab Pipelines.
 
 RUN apk update
 RUN apk add git
