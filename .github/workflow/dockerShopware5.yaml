@@ -22,8 +22,8 @@ jobs:
         run: docker build Shopware5/ -t ghcr.io/simonprinz/shopwarepacker:${GITHUB_REF:11}
       - name: Push the tagged Docker image
         if: github.event_name == 'release'
-        run: docker push ghcr.io/simonprinz/simonprinzdotme:${GITHUB_REF:11}
+        run: docker push ghcr.io/simonprinz/shopwarepacker:${GITHUB_REF:11}
       - name: Tag the latest Docker image
-        run: docker build Shopware5/ -t ghcr.io/simonprinz/simonprinzdotme:latest
+        run: docker build Shopware5/ -t ghcr.io/simonprinz/shopwarepacker:latest
       - name: Push the latest Docker image
-        run: docker push ghcr.io/simonprinz/simonprinzdotme:latest
+        run: docker push ghcr.io/simonprinz/shopwarepacker:latest
