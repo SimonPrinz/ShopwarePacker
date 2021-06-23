@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 if [ ! -e /shopware/inst.lock ]; then
   touch /shopware/inst.lock

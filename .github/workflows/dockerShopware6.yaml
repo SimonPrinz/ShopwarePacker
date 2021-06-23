@@ -19,11 +19,11 @@ jobs:
         run: echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u ${{ secrets.GHCR_USERNAME }} --password-stdin
       - name: Build the tagged Docker image
         if: github.event_name == 'release'
-        run: docker build Shopware6/ -t ghcr.io/simonprinz/shopwarepacker:sw6_${GITHUB_REF:11}
+        run: docker build Shopware6/ -t ghcr.io/simonprinz/shopwarepacker6:${GITHUB_REF:11}
       - name: Push the tagged Docker image
         if: github.event_name == 'release'
-        run: docker push ghcr.io/simonprinz/shopwarepacker:sw6_${GITHUB_REF:11}
+        run: docker push ghcr.io/simonprinz/shopwarepacker6:${GITHUB_REF:11}
       - name: Tag the latest Docker image
-        run: docker build Shopware6/ -t ghcr.io/simonprinz/shopwarepacker:sw6_latest
+        run: docker build Shopware6/ -t ghcr.io/simonprinz/shopwarepacker6:latest
       - name: Push the latest Docker image
-        run: docker push ghcr.io/simonprinz/shopwarepacker:sw6_latest
+        run: docker push ghcr.io/simonprinz/shopwarepacker6:latest
