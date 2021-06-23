@@ -34,4 +34,4 @@ RUN wget -O nodesource_setup.sh https://deb.nodesource.com/setup_14.x && \
 WORKDIR /shopware/custom/plugins/Plugin
 COPY startup.sh /startup.sh
 RUN chmod +x /startup.sh
-CMD [ "/startup.sh" ]
+ENTRYPOINT ["/startup.sh"]

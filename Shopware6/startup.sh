@@ -9,3 +9,5 @@ if [ ! -e /shopware/inst.lock ]; then
   echo 'installing shopware'
   php /shopware/bin/console system:install -fnq
 fi
+
+exec "$@"
