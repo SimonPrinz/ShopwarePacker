@@ -31,7 +31,7 @@ RUN wget -O nodesource_setup.sh https://deb.nodesource.com/setup_14.x && \
     apt-get update && \
     apt-get install -y nodejs
 
-WORKDIR /shopware/custom/plugins/Plugin
+WORKDIR /shopware/custom/plugins
 COPY startup.sh /startup.sh
 RUN chmod +x /startup.sh
 ENTRYPOINT ["/startup.sh"]
