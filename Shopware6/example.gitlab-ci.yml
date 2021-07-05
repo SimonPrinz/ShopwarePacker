@@ -1,0 +1,38 @@
+variables:
+  MYSQL_DATABASE: shopware
+  MYSQL_ROOT_PASSWORD: shopware
+  MYSQL_USER: shopware
+  MYSQL_PASSWORD: shopware
+  MYSQL_HOST: mysql
+
+image: ghcr.io/simonprinz/shopwarepacker6:latest
+
+build:
+  stage: build
+  services:
+    - mysql:5.7
+  script:
+    # save initial path
+    - DIRNAME=$PWD
+    # remove git/gitlab files
+    - rm -rf .git*
+    # move the project into the plugins folder
+    - mv $PWD "/shopware/custom/plugins/$CI_RPOJECT_NAME"
+    # switch to shopware
+    - cd /shopware/
+    # refresh plugin list
+    - /shopware/bin/console plugin:refresh
+    # install the plugin
+    - /shopware/bin/console plugin:install "$CI_PROJECT_NAME"
+    # activate the plugin and clear cache
+    - /shopware/bin/console -c plugin:activate "$CI_PROJECT_NAME"
+    # build the storefront and administration
+    - /shopware/bin/build-js.sh
+    # change to initial directory
+    - mkdir -p $DIRNAME && cd $DIRNAME
+    # move the build plugin back to the build folder
+    - mv "/shopware/custom/plugins/$CI_PROJECT_NAME" "$DIRNAME/$CI_PROJECT_NAME"
+  artifacts:
+    name: "${CI_PROJECT_NAME}_${CI_COMMIT_REF_NAME}"
+    paths:
+      - "*"
