@@ -10,4 +10,4 @@ if [ ! -e /shopware/inst.lock ]; then
   touch /shopware/inst.lock
 fi
 
-exec "$@"
+bash -c '$@'
