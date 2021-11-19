@@ -10,4 +10,10 @@ if [ ! -e /shopware/inst.lock ]; then
   touch /shopware/inst.lock
 fi
 
-bash -c '$@'
+command="$@"
+if [ "x$command" = "x" ];
+then
+  tail -f /dev/null
+else
+  bash -c "$command"
+fi
