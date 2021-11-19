@@ -33,6 +33,8 @@ RUN wget -O nodesource_setup.sh https://deb.nodesource.com/setup_14.x && \
     apt-get update && \
     apt-get install -y nodejs
 
+HEALTHCHECK CMD if [ -f /shopware/inst.lock ]; then exit 0; else exit 1; fi
+
 WORKDIR $SHOPWARE_PLUGINS
 COPY startup.sh /startup.sh
 RUN chmod +x /startup.sh
