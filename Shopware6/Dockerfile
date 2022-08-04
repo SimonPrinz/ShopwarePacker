@@ -1,6 +1,6 @@
 FROM php:7.4-cli
 
-ENV SHOPWARE_VERSION "v6.4.6.0"
+ENV SHOPWARE_VERSION "v6.4.14.0"
 ENV APP_URL "http://127.0.0.1"
 ENV SHOPWARE_ROOT "/shopware"
 ENV SHOPWARE_PLUGINS "/shopware/custom/plugins"
