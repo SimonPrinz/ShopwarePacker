@@ -17,9 +17,9 @@ RUN apt-get install -y git wget \
 RUN docker-php-ext-configure gd && \
     docker-php-ext-configure intl
 RUN docker-php-ext-install mysqli pdo pdo_mysql gd intl zip
-RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.init && \
-    sed -i 's/memory_limit/;memory_limit/' $PHP_INI_DIR/php.init && \
-    echo 'memory_limit = 1G' >> $PHP_INI_DIR/php.init
+RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini && \
+    sed -i 's/memory_limit/;memory_limit/' $PHP_INI_DIR/php.ini && \
+    echo 'memory_limit = 1G' >> $PHP_INI_DIR/php.ini
 
 RUN git clone -b $SHOPWARE_VERSION --depth 1 https://github.com/shopware/production $SHOPWARE_ROOT
 
